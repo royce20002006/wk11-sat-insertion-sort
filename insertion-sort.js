@@ -55,32 +55,38 @@ function insertionSortInPlace(arr) {
  
   // Pseudocode:
   // Set a pointer dividing the array into sorted and unsorted halves
-  let divider = 0;
+  let divider = 1;
   // Repeat while the unsorted half is not empty:
  while(arr.length > divider) {
    // - make sure you have a console.log(sorted.join(',')) as your first line in the while loop
   console.log(arr.join(','));
   // - Grab the first value from the unsorted half
-  let el = arr.shift()
-  // - For each value starting from the divider,
-  for (let i = divider; i > 0; i--) {
-    // - Check if the value to the left is smaller than the unsorted value
-    if (el < arr[i]) {
-      console.log(el)
-      console.log(arr)
-      // - If so, you've reached the insertion point so exit the loop
-      arr.splice(i, 0, el);
-      break;
-    } 
-  }
-  // - Insert the unsorted value at the break point
-  // - If not shift the value to the right by 1 and continue
-  divider++
-  // - Increment the dividing pointer and repeat
+  
+  // let el = arr.splice(divider,1)
+  let el = arr[divider]
 
- }
- // Return the mutated array
- return arr;
+  // - For each value starting from the divider,
+  for (let i = divider; i >= 0; i--) {
+    // - Check if the value to the left is smaller than the unsorted value
+    if (i === 0) arr[i] = el;
+    else if ( arr[i - 1]< el, i--) {
+      // arr.splice(i, 0, el);
+      arr = el;
+      // - If so, you've reached the insertion point so exit the loop
+      break;
+    } else {
+      // - If not shift the value to the right by 1 and continue
+      arr[i] = arr[i - 1];
+    }
+  }
+  // - Increment the dividing pointer and repeat
+  divider++
+}
+// Return the mutated array
+return arr;
+  
+  
+
   
 
   // Your code here 
